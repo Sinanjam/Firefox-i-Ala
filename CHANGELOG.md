@@ -1,5 +1,12 @@
 # Değişiklik günlüğü
 
+## [0.1.1] — 2026-11-07
+
+- Git gerektirmeyen indirilebilir `Firefox-i-Ala.zip` dağıtım paketi.
+- `SHA256SUMS.txt` ile SHA-256 bütünlük doğrulaması ve otomatik GitHub Release iş akışı.
+- Türkçe/İngilizce sürüm notları ve README'de doğrudan ZIP indirme bağlantıları.
+- Tema CSS yamaları v0.1.0 ile aynıdır; Firefox 159 üzerinde uçtan uca GUI doğrulaması yapılmamıştır.
+
 ## [0.1.0] — 2026-11-07
 
 İlk deneysel Türkçe topluluk sürümü. Temel: ShyFox 3.8.1.
