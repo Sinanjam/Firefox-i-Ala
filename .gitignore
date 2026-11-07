@@ -1,0 +1,19 @@
+# Kişisel Firefox profilleri ve geçici dosyalar
+*.pyc
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+*.log
+.DS_Store
+*.swp
+*.swo
+*.bak
+*.orig
+*.rej
+profiles/
+*.default-release/
+*.default/
+.shyfox-yedekler/
+.firefox-i-ala-backups/

@@ -1,0 +1,43 @@
+name: "🐛 Hata bildirimi"
+description: "Firefox-ı Âlâ görünümünde veya kurulumunda bir sorun bildirin"
+title: "[Hata] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Lütfen şifreleri, çerezleri, profil arşivini veya kişisel bilgilerinizi paylaşmayın."
+  - type: input
+    id: firefox
+    attributes:
+      label: Firefox sürümü
+      placeholder: "159.0.1"
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: İşletim sistemi / masaüstü
+      placeholder: "Arch Linux / Hyprland"
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: Kurulum yöntemi
+      options:
+        - Mevcut ShyFox'u yamaladım
+        - Tam tema kurdum
+        - Elle kopyaladım
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Beklenen ve gerçekleşen davranış
+      description: "Adımları, hatayı, varsa gizli veri içermeyen ekran görüntüsünü belirtin."
+    validations:
+      required: true
+  - type: textarea
+    id: extensions
+    attributes:
+      label: Sidebery ve Userchrome Toggle sürümleri

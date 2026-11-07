@@ -1,0 +1,12 @@
+name: "💡 İyileştirme önerisi"
+description: "Yeni bir uyumluluk veya kullanım iyileştirmesi önerin"
+title: "[Öneri] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Neyi geliştirelim?
+      description: "Mevcut ShyFox görünümünü nasıl koruyacağını da açıklayabilir misin?"
+    validations:
+      required: true
