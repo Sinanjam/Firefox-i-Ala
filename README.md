@@ -1,6 +1,15 @@
+> [!IMPORTANT]
+> **🤖 TAMAMEN VIBE CODING / AI ŞEFFAFLIĞI**
+>
+> **Firefox-ı Âlâ'nın ShyFox üzerine eklediği bütün uyumluluk yamaları, kurulum/geri alma betikleri, otomatik testler ve proje belgeleri, yapay zekâ (ChatGPT) ile yönlendirme temelli “vibe coding” yöntemi kullanılarak hazırlandı.** Projeyi yönlendiren kişi yazılımı satır satır elle geliştirdiğini veya bağımsız olarak denetlediğini iddia etmez. Otomatik testler, Firefox 159'da eksiksiz çalıştığı anlamına gelmez; canlı arayüz doğrulaması henüz yapılmadı.
+>
+> **Açıklama:** Orijinal [ShyFox](https://github.com/Naezr/ShyFox) teması ve önceki katkıcılarının çalışmaları bu iddianın **dışındadır**: özgün kod Naezr ve katkıcılarına aittir. Bu depo bağımsız, resmî olmayan bir türevdir.
+
 # 🦊 Firefox-ı Âlâ
 
 **ShyFox görünümünü sevenler için Firefox 159 uyumluluk çalışması.**
+
+🌐 **Dil / Language:** 🇹🇷 Türkçe (bu sayfa) · [🇬🇧 English](README.en.md)
 
 [![Doğrulama](https://github.com/Sinanjam/Firefox-i-Ala/actions/workflows/test.yml/badge.svg)](https://github.com/Sinanjam/Firefox-i-Ala/actions/workflows/test.yml)
 ![Lisans: MPL-2.0](https://img.shields.io/badge/lisans-MPL--2.0-blue)
@@ -76,23 +85,10 @@ Firefox'u kaldırman, profilini sıfırlaman veya ShyFox'tan vazgeçmen gerekmez
 - Firefox güncellemeleri bu özel CSS'leri tekrar bozabilir.
 - Firefox 159 üzerinde uçtan uca GUI testi henüz yapılmadı; bulgular ve ekran görüntüleri değerlidir.
 
-[**Sorun giderme**](docs/SORUN_GIDERME.md) · [**Katkıda bulunma**](CONTRIBUTING.md) · [**Değişiklikler**](CHANGELOG.md)
+[**Sorun giderme**](docs/SORUN_GIDERME.md) · [**Değişiklikler**](CHANGELOG.md)
 
 ## Telif ve teşekkür
 
 Orijinal tasarım ve kaynak kod [Naezr/ShyFox](https://github.com/Naezr/ShyFox) geliştiricisine aittir; lisansı **Mozilla Public License 2.0**. [Orijinal README](docs/ORIJINAL_SHYFOX_README.md) ve `LICENSE` dosyası korunmuştur. İçerikte kullanılan simgeler ve duvar kâğıdı için orijinal projenin teşekkür/kaynak bölümüne bakın. PR #243 ve #250 katkıcılarına da teşekkürler.
 
 **Firefox-ı Âlâ**, bu kaynağın Türkçe dokümantasyonlu, uyumluluk düzeltmeleri taşıyan bağımsız türevidir. Firefox ve ShyFox markalarının resmî ürünü değildir.
-
-## GitHub'da yayımlama (depo sahibi için)
-
-GitHub'un depo adı kuralı nedeniyle görünen proje adı **Firefox-ı Âlâ**, depo adresi ise **`Sinanjam/Firefox-i-Ala`** olacaktır. Arch Linux + Fish üzerinden: 
-
-```fish
-sudo pacman -S --needed git github-cli
-gh auth login
-cd ~/Downloads/Firefox-i-Ala
-fish YAYINLA.fish
-```
-
-Betik doğru GitHub hesabını kontrol eder, **EVET** onayı ister ve herkese açık depoyu oluşturup kaynakları `main` dalına gönderir; ardından `v0.1.0` ön sürümünü yayımlamayı dener. Bu işlem yalnızca depo sahibi betiği kendi bilgisayarında çalıştırdığında yapılır.
