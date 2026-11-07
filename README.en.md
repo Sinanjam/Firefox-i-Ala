@@ -9,6 +9,22 @@
 
 **A Firefox 159 compatibility effort for people who love the ShyFox look.**
 
+## 📦 No Git clone — download a ready-to-install ZIP
+
+**[Download Firefox-ı Âlâ v0.1.1 ZIP](https://github.com/Sinanjam/Firefox-i-Ala/releases/download/v0.1.1/Firefox-i-Ala.zip)** · [All releases](https://github.com/Sinanjam/Firefox-i-Ala/releases) · [SHA-256 checksum](https://github.com/Sinanjam/Firefox-i-Ala/releases/download/v0.1.1/SHA256SUMS.txt)
+
+Extract the ZIP, locate your active Firefox profile's **Root Directory** at `about:profiles`, and close Firefox. Open a Fish terminal in the extracted `Firefox-i-Ala` directory:
+
+```fish
+set profile ~/.mozilla/firefox/xxxxxxxx.default-release
+python3 scripts/kur.py --profile "$profile" --dry-run
+python3 scripts/kur.py --profile "$profile"
+```
+
+**Replace the sample profile path with your real one.** Complete the extension/settings steps below. No Git, GitHub CLI or `git clone` required. The ZIP also includes `scripts/fix_shyfox_159.py` if you only want to patch an existing ShyFox setup.
+
+
+
 🌐 **Language / Dil:** [🇹🇷 Türkçe](README.md) · 🇬🇧 English (this page)
 
 [![Checks](https://github.com/Sinanjam/Firefox-i-Ala/actions/workflows/test.yml/badge.svg)](https://github.com/Sinanjam/Firefox-i-Ala/actions/workflows/test.yml)
