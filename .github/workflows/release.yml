@@ -1,0 +1,100 @@
+name: Yayınla - Git gerektirmeyen ZIP
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/release.yml'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Sürüm etiketi (ör. v0.1.2). Var olan etiketi yeniden kullanma.'
+        required: true
+        default: 'v0.1.1'
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: firefox-i-ala-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Test et, paketle ve GitHub Release yayımla
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kaynakları al
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Sürüm etiketini doğrula
+        env:
+          RELEASE_TAG: ${{ inputs.version || 'v0.1.1' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Sürüm vX.Y.Z biçiminde olmalı"
+            exit 1
+          fi
+
+      - name: Python ve kurulum testleri
+        run: |
+          python3 -m compileall -q scripts tests
+          python3 -m unittest discover -s tests -v
+
+      - name: İndirilebilir dağıtımı oluştur
+        env:
+          RELEASE_TAG: ${{ inputs.version || 'v0.1.1' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/package_release.py --version "$RELEASE_TAG" --output dist
+          (cd dist && sha256sum -c SHA256SUMS.txt)
+          python3 - <<'PY'
+          from zipfile import ZipFile
+          with ZipFile('dist/Firefox-i-Ala.zip') as archive:
+              assert archive.testzip() is None
+              for entry in ('Firefox-i-Ala/README.md',
+                            'Firefox-i-Ala/README.en.md',
+                            'Firefox-i-Ala/chrome/userChrome.css',
+                            'Firefox-i-Ala/scripts/kur.py',
+                            'Firefox-i-Ala/sidebery-settings.json'):
+                  assert entry in archive.namelist(), entry
+          PY
+
+      - name: GitHub Release oluştur ve ZIP + checksum yükle
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.version || 'v0.1.1' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "::error::Bu sürüm zaten yayımlanmış: $RELEASE_TAG"
+            exit 1
+          fi
+          if git ls-remote --exit-code --tags origin "refs/tags/$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "::error::Bu sürüm etiketi zaten var: $RELEASE_TAG"
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$RELEASE_TAG" -m "Firefox-ı Âlâ $RELEASE_TAG"
+          git push origin "refs/tags/$RELEASE_TAG"
+          gh release create "$RELEASE_TAG" \
+            dist/Firefox-i-Ala.zip \
+            dist/SHA256SUMS.txt \
+            --verify-tag \
+            --prerelease \
+            --title "Firefox-ı Âlâ $RELEASE_TAG (Deneysel)" \
+            --notes-file docs/RELEASE_NOTES.md
