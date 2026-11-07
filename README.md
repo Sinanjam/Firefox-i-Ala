@@ -9,6 +9,22 @@
 
 **ShyFox görünümünü sevenler için Firefox 159 uyumluluk çalışması.**
 
+## 📦 Git clone yok — hazır sürümü indir
+
+**[Firefox-ı Âlâ v0.1.1 — ZIP'i indir](https://github.com/Sinanjam/Firefox-i-Ala/releases/download/v0.1.1/Firefox-i-Ala.zip)** · [Tüm sürümler](https://github.com/Sinanjam/Firefox-i-Ala/releases) · [SHA-256 doğrulama](https://github.com/Sinanjam/Firefox-i-Ala/releases/download/v0.1.1/SHA256SUMS.txt)
+
+İndirilen ZIP'i çıkar, Firefox'ta `about:profiles` üzerinden aktif profilinin kök yolunu bulup Firefox'u kapat. Arşivdeki `Firefox-i-Ala` klasöründe Fish terminalini aç:
+
+```fish
+set profile ~/.mozilla/firefox/xxxxxxxx.default-release
+python3 scripts/kur.py --profile "$profile" --dry-run
+python3 scripts/kur.py --profile "$profile"
+```
+
+**Profil yolunu kendi yolunla değiştir.** Eklenti/ayar adımları aşağıda. Git, GitHub CLI veya `git clone` gerekmez. ZIP'i mevcut ShyFox üzerine yamamak için `scripts/fix_shyfox_159.py` de paketin içindedir.
+
+
+
 🌐 **Dil / Language:** 🇹🇷 Türkçe (bu sayfa) · [🇬🇧 English](README.en.md)
 
 [![Doğrulama](https://github.com/Sinanjam/Firefox-i-Ala/actions/workflows/test.yml/badge.svg)](https://github.com/Sinanjam/Firefox-i-Ala/actions/workflows/test.yml)
